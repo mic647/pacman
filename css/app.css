@@ -1,0 +1,96 @@
+body {
+  background-color: #131c21;
+  color: white;
+}
+
+.game {
+  position: absolute;
+  left: calc(50% - 200px);
+  text-align: center;
+}
+
+button {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-family: fantasy;
+}
+
+button:hover {
+  background-color: #f7630c;
+  color: wheat;
+}
+
+table {
+  background-color: black;
+  width: 400px;
+  height: 400px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.5em;
+  border-radius: 50%;
+}
+
+.game-over {
+  font-size: 11px;
+  color: red;
+}
+
+img {
+  animation-play-state: paused;
+}
+
+.pacman {
+  transform: rotate(0deg);
+}
+
+.btn-play-ag {
+  display: inline;
+}
+
+.modal>span {
+  display: block;
+  line-height: 50px;
+}
+
+.modal>button {
+  background-color: #f7630c;
+  color: wheat;
+}
+
+.modal>button:hover {
+  background-color: white;
+  color: black;
+}
+
+.super>span {
+  opacity: 100%;
+  transition: 0.5s;
+}
+
+.pacman {
+  display: block;
+  margin: 0 auto;
+  width: 25px;
+  height: 25px;
+}
+
+/* .modal {
+  background-image: url(../img/confetti.gif);
+  color: linen;
+  position: absolute;
+  height: 200px;
+  width: 500px;
+  left: calc(50% - 250px);
+  line-height: 200px;
+  text-align: center;
+  border-radius: 20px;
+  transition: 2s;
+  display: none;
+  z-index: 0;
+} */
