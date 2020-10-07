@@ -61,6 +61,7 @@ function movePacman(eventKeyboard) {
       playSound('pacman_eatghost')
       removeGohst(nextLocation)
     } else {
+      // rotateCell(nextCell.i,nextCell.j)
       renderCell(gPacman.location, PACMAN);
       gameOver()
       return;

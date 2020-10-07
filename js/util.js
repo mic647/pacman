@@ -19,9 +19,6 @@ function printMat(mat, selector) {
     for (var j = 0; j < mat[0].length; j++) {
       var cell = mat[i][j];
       var className = `cell cell${i}-${j}`
-      // if (mat[i][j] === '&#9786;') {
-      //   className = `pacman cell cell${i}-${j}`
-      // }
       strHTML += '<td class="' + className + '"> ' + cell + ' </td>'
       // 
     }

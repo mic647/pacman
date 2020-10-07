@@ -1,14 +1,16 @@
-const GHOST = '&#128123;';
+// const GHOST = '&#128123;';
+const GHOST = '<div class="ghosts"><div class="arm-right"></div><div class="arm-left"></div><div class="eye-l"></div><div class="eye-r"></div><div class="mouth"></div><div class="tri-1"></div><div class="tri-2"></div><div class="tri-3"></div></div>';
 
 var gIntervalGhosts;
 var gGhosts;
+var gNumOfGhosts = 3;
 
 
 function createGhost(board) {
     var ghost = {
         location: {
-            i: 3,
-            j: 3
+            i: 4,
+            j: 2
         },
         currCellContent: FOOD
     };
@@ -20,10 +22,11 @@ function createGhost(board) {
 function createGhosts(board) {
     gGhosts = [];
     // empty the gGhosts array, create some ghosts
-    createGhost(board)
-    createGhost(board)
-    createGhost(board)
-    //  and run the interval to move them
+    for (var i = 0; i < gNumOfGhosts; i++) {
+        createGhost(board);
+        getMoveDiff();
+    }
+    // and run the interval to move them
     gIntervalGhosts = setInterval(moveGhosts, 3000)
 }
 
@@ -96,15 +99,15 @@ function getMoveDiff() {
 
 
 function getGhostHTML(ghost) {
-    return `<span class="ghost" style="text-shadow: 2px 2px 4px  ${gPacman.isSuper ? 'red' : getRandomColor()};">${GHOST}</span>`
+    return `<span class="ghosts" style="background-color:${gPacman.isSuper ? 'red' : getRandomColor()};">${GHOST}</span>`
 }
 
 function removeGohst(location) {
     for (var i = 0; i < gGhosts.length; i++) {
         if (gGhosts[i].location.i === location.i && gGhosts[i].location.j === location.j) {
             if (gGhosts[i].currCellContent === FOOD) {
-                gScore++
-                updateScore(1)
+                gScore++;
+                updateScore(1);
             }
             gGhosts.splice(i, 1)
         }
@@ -114,6 +117,7 @@ function removeGohst(location) {
 function createGohstAgain() {
     for (var i = gGhosts.length; i < 3; i++) {
         createGhost(gBoard)
+        getMoveDiff();
         gGhosts[i].currCellContent = EMPTY;
     }
 }

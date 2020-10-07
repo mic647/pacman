@@ -1,6 +1,9 @@
+
+
 body {
   background-color: #131c21;
   color: white;
+  box-sizing: border-box;
 }
 
 .game {
@@ -17,10 +20,6 @@ button {
   font-family: fantasy;
 }
 
-button:hover {
-  background-color: #f7630c;
-  color: wheat;
-}
 
 table {
   background-color: black;
@@ -47,10 +46,16 @@ img {
 
 .pacman {
   transform: rotate(0deg);
+  opacity: 100%;
+  transition: width 2s;
 }
 
 .btn-play-ag {
   display: inline;
+}
+
+.btn-play-again:hover {
+  background-color: #f7630c;
 }
 
 .modal>span {
@@ -58,10 +63,10 @@ img {
   line-height: 50px;
 }
 
-.modal>button {
+/* .modal>button {
   background-color: #f7630c;
   color: wheat;
-}
+} */
 
 .modal>button:hover {
   background-color: white;
@@ -79,6 +84,83 @@ img {
   width: 25px;
   height: 25px;
 }
+
+.ghosts{
+  position: absolute;
+  left: 7.5px;
+  right: 7.5px;
+  top: 7.5;
+  bottom: 7.5px;
+  height: 25px;
+  width: 25px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border: 1px solid red; */
+}
+.eye-r{
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: black;
+  left: -1.5px;
+  top: 12.5px;
+  border-radius: 50%;
+}
+
+.eye-l{
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: black;
+  left: 8.5px;
+  top: 12.5px;
+  border-radius: 50%;
+}
+
+.tri-1,
+.tri-2,
+.tri-3{
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  border-radius: 2px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.tri-1 {
+  top: 27.5px;
+  left: -6px;
+}
+
+.tri-2 {
+  top: 27.5px;
+  left: 7px;
+}
+
+.tri-3 {
+  top: 27.5px;
+  left: 16px;
+}
+
+.mouth{
+  position: relative;
+  width:0;
+  height:0;
+  border-left: 5px solid black;
+  border-right: 5px solid transparent;
+  border-radius: 50%;
+  border-top: 5px solid black;
+  border-bottom: 5px solid transparent;
+  transform:rotate(-135deg);
+  top:17.5px;
+  left: 0.5px;
+  z-index:1;
+}
+
+
 
 /* .modal {
   background-image: url(../img/confetti.gif);

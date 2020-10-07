@@ -17,25 +17,24 @@ var gGame = {
 
 function init() {
   gScore = 0;
-  clearInterval(gIntervalCherry)
-  clearInterval(gIntervalGhosts)
   gGame.score = 0;
+  gGame.isOn = false;
   document.querySelector('header h3 span').innerText = gGame.score;
+  clearInterval(gIntervalCherry);
+  clearInterval(gIntervalGhosts);
   isSuperFood(gSuperFoodFalse);
-  // modal('0', 'none')
-  // modalMsg()
   gBoard = buildBoard();
-  printMat(gBoard, '.board-container');
-  playSound('pacman_beginning')
-  gIntervalCherry = setInterval(addCherry, 10000)
   createPacman(gBoard);
   printMat(gBoard, '.board-container');
+  playSound('pacman_beginning');
+  gIntervalCherry = setInterval(addCherry, 10000);
   createGhosts(gBoard);
+  disabledBtn(true)
   setTimeout(() => {
+    disabledBtn(false)
     gGame.isOn = true;
   }, 4000);
 }
-
 
 function buildBoard() {
   var SIZEW = 10;
@@ -82,13 +81,14 @@ function updateScore(value) {
   console.log(gScore);
   gGame.score += value;
   document.querySelector('header h3 span').innerText = gGame.score;
-  if (gScore === 60) gameOver();
+  if (gScore >= 60) gameOver();
 }
 
 
 function gameOver() {
   console.log('Game Over');
-  if (gScore === 60) {
+  gGame.isOn = false;
+  if (gScore >= 60) {
     playSound('pacman_intermission')
   } else {
     playSound('pacman_death')
@@ -96,9 +96,8 @@ function gameOver() {
   clearInterval(gIntervalGhosts);
   clearInterval(gIntervalCherry);
   gIntervalGhosts = null;
-  gGame.isOn = false;
-  // modal('999', 'block')
   modalMsg()
+  // document.querySelector('.btn-play-ag').innerText = 'Play Again'
 }
 
 function rotateCell(nextLocationI, nextLocationJ) {
@@ -114,25 +113,22 @@ function modalMsg() {
   elCell2.innerHTML = `<div class="game-over">OVER</div>`
   elCell1.style.transform = 'rotate(0deg)'
   elCell2.style.transform = 'rotate(0deg)'
-  elCell3.style.borderRadius = '50%';
-  elCell3.style.backgroundColor = 'yellow';
+  elCell3.style.display = 'none';
+  
+}
+
+function disabledBtn(onOf) {
+  var elBtn = document.querySelector('.btn-play-ag')
+  elBtn.disabled = onOf
+  if (!onOf) {
+    elBtn.classList.add('btn-play-again')
+  } else {
+    elBtn.classList.remove('btn-play-again')
+  }
 }
 
 function playSound(sound) {
   var sound = new Audio('sound/' + sound + '.WAV');
   sound.play();
 }
-
-
-// function modal(zIndex, display) {
-//   var elModal = document.querySelector('.modal');
-//   elModal.style.zIndex = zIndex;
-//   elModal.style.display = display;
-// }
-
-// function modalMsg() {
-//   var elModal = document.querySelector('.modal');
-//   elModal.innerHTML = `${gScore !== 60 ? '<span>The game is over friend, you lost to a ghost!</span>' : '<span> Game over! your score is ' + gGame.score}</span><button class="btn-play-ag" onclick="init()">play again</button>`
-
-// }
 
